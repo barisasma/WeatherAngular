@@ -1,0 +1,57 @@
+<form (ngSubmit)="onSubmit()" [formGroup]="myControl">
+    <mat-form-field class="example-full-width">
+        <input type="text" ngModel name="city" placeholder="Pick one" aria-label="Number" matInput [matAutocomplete]="auto"
+            [formControl]="myControl">
+        <mat-autocomplete #auto="matAutocomplete">
+            <mat-option *ngFor="let place of filteredPlaces | async" [value]="place">
+                {{place}}
+            </mat-option>
+        </mat-autocomplete>
+    </mat-form-field>
+    <button name="button">Go</button>
+</form>
+
+<div class="container">
+    <div class="row" *ngFor="let weather of myWeathers">
+        <div class="col-sm">
+            <div class="weather-card one">
+                <div class="top">
+                    <div class="wrapper">
+                        <h1 class="heading">{{weather.cityName}}</h1>
+                        <p class="temp">
+                            <span class="temp-value">{{weather.temp}}</span>
+                            <span class="deg">0</span>
+                            <a href="javascript:;"><span class="temp-type">C</span></a>
+                        </p>
+                        <div class="img">
+                            <img src={{weather.icon}}>
+                        </div>
+                        <h3 class="heading">{{weather.weatherKind}}</h3>
+                        <h4 class="location">Max: {{weather.tempMax}}&deg;</h4>
+                        <h4 class="location">Min: {{weather.tempMin}}&deg;</h4>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm" *ngFor="let forecast of weather.forecasts">
+            <div class="weather-card one">
+                <div class="top">
+                    <div class="wrapper">
+                        <h1 class="heading">{{forecast.day | date:'MMM d y'}}</h1>
+                        <p class="temp">
+                            <span class="temp-value">{{forecast.temp}}</span>
+                            <span class="deg">0</span>
+                            <a href="javascript:;"><span class="temp-type">C</span></a>
+                        </p>
+                        <div class="img">
+                            <img src={{forecast.icon}}>
+                        </div>
+                        <h3 class="heading">{{forecast.weatherKind}}</h3>
+                        <h4 class="location">Max: {{forecast.max}}&deg;</h4>
+                        <h4 class="location">Min: {{forecast.min}}&deg;</h4>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,12 @@
+.example-card {
+    max-width: 200px;
+  }
+  
+  .example-header-image {
+    background-image: url('https://openweathermap.org/img/w/09d.png');
+    background-size: cover;
+  }
+
+  .dayForeCast{
+    float: left;
+  }
